@@ -1,16 +1,21 @@
+const sparql_api = require('../services/sparql-api')
+const gent_sparql = require('../services/gent-sparql')
+
 async function get(req, res, next) {
     try {
-        res.json('GET IS CALLED')
+        var result = await sparql_api.sparql_api_test();
+        console.log(result["Datasetcatalogus.titel"]["@value"])
+        res.json(result)
     } catch(e) {
         console.log("GET ERROR");
         next(e);
     }
 }
 
-async function post(req, res, next) {
+async function get_sparql(req, res, next) {
     try {
-        console.log(req.body)
-        res.json('POST IS CALLED')
+        var result = await gent_sparql.sparql_test();
+        res.end(result)
     } catch(e) {
         console.log("POST ERROR");
         next(e);
@@ -19,5 +24,5 @@ async function post(req, res, next) {
 
 module.exports = {
     get,
-    post
+    get_sparql
 };

@@ -3,6 +3,6 @@ const router = express.Router();
 const BDSController = require('../controllers/BDS.controller');
 
 router.get('/', BDSController.get);
-router.post('/', BDSController.post);
+router.get('/gent', BDSController.get_sparql);
 
 module.exports = router;
