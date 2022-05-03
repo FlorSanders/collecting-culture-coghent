@@ -1,9 +1,7 @@
 const env = process.env.NODE_ENV || 'dev';
 
 const dev = {
-    app: {
-        port: parseInt(process.env.DEV_APP_PORT) || 3000
-    }
+    port: parseInt(process.env.DEV_APP_PORT) || 3001,
 };
 
 const config = {

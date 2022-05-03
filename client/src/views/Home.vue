@@ -35,29 +35,36 @@
       </p>
       </v-col>
 
+      <!-- Search box -->
       <v-col>
-        <v-text-field class="mx-5" v-model="searchbox" outlined label="Search for culture" clearable />
-        <v-col class="mb-3">
-          <v-btn @click="search" elevation="2" color="secondary">Search</v-btn>
-        </v-col>
+        <form class="form-inline" @submit.prevent="search">
+          <v-text-field class="mx-5" v-model="searchbox" outlined label="Search for culture" clearable />
+          <v-btn elevation="2" color="secondary" type="submit">Search</v-btn>
+        </form>
+      </v-col>
+
+      <!-- Map -->
+      <v-col>
         <iframe width="50%" height="10%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=3.6184501647949223%2C51.0033856925319%2C3.8340568542480473%2C51.09662294502995&amp;layer=mapnik" style="border: 1px solid black"></iframe>
         <br/>
         <small>
           <a href="https://www.openstreetmap.org/#map=13/51.0500/3.7263">View Larger Map</a>
         </small>
       </v-col>
-      <v-layout v-if="debug" class="my-5" row wrap justify-center>
+
+      <!-- Search results -->
+      <v-layout v-if="searchTerm" class="my-5" row wrap justify-center>
         <v-card
           class="elevation-0"
           color="rgb(0, 0, 0, 0)"
           >
-        <v-card-title>{{this.debug}}</v-card-title>
+        <v-card-title>{{this.searchTerm}}</v-card-title>
         <v-card
           v-for="result in results"
-          :key="result.id"
-          width="70vh"
+          :key="result.name"
+          width="70vw"
           class="my-2">
-          <v-card-title>{{result.title}}</v-card-title>
+          <v-card-title>{{result.name}}</v-card-title>
         </v-card>
         </v-card>
       </v-layout>
@@ -68,27 +75,23 @@
   </v-container>
 </template>
 
-<script>
+<script setup>
   import axios from "axios"
-
   export default {
     name: 'SearchBox',
-
     data: () => ({
      searchbox: "",
-     results: [
-       {id: "1", title: "We love BDS"},
-       {id: "2", title: "We adore BDS"},
-       {id: "3", title: "We *** BDS"},
-
-     ],
-     debug: null,
+     results: [],
+     searchTerm: null,
     }),
     
     methods: {
-      search() {
-        this.debug = this.searchbox
-        console.log(this.searchbox)
+      async search() {
+        this.searchTerm = this.searchbox
+        let response = await axios.get(`http://localhost:3001/bds/poi/${this.searchbox}`);
+
+        this.results = response.data.points;
+        console.log(this.results);
       }
     }
   }
