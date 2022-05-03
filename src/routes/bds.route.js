@@ -1,7 +1,6 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const BDSController = require('../controllers/BDS.controller');
-
+const BDSController = require("../controllers/BDS.controller");
 
 /**
  * @swagger
@@ -78,7 +77,7 @@ const BDSController = require('../controllers/BDS.controller');
  *                               type: string
  *                               description: The URL of the image of the art object.
  *                               example: https://api.collectie.gent/iiif/imageiiif/3/d7b1996e3e4c622c6eeda23150dc4909-2002-078-852.tif/full/%5E1000,/0/default.jpg
-*/
-router.get('/poi/:country', BDSController.get_poi);
+ */
+router.get("/poi/:country", BDSController.get_poi);
 
 module.exports = router;
