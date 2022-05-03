@@ -54,6 +54,12 @@ router.get('/gent', BDSController.get_sparql);
  *                         example: 3.72020
 */
 router.get('/poi/:country', BDSController.get_poi);
+
+/**
+ * @swagger
+ * /poi_coghent/{country}:
+ *   get:
+*/
 router.get('/poi_coghent/:country', BDSController.get_poi_coghent);
 
 module.exports = router;

@@ -50,8 +50,8 @@ async function get_poi_coghent(req, res, next) {
     try {
         var country = req.params['country'];
         var result = await locations_coghent.getCoghentPOIs(country);
-        console.log(result)
-        res.end('')
+        return_value = JSON.stringify(result)
+        res.end(return_value)
     } catch(e) {
         console.log("POI ERROR");
         next(e);
