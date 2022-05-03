@@ -1,6 +1,7 @@
 const sparql_api = require('../services/sparql-api')
 const gent_sparql = require('../services/gent-sparql')
 const locations = require('../services/locations')
+const locations_coghent = require('../services/coghent-poi')
 
 async function get(req, res, next) {
     try {
@@ -45,8 +46,21 @@ async function get_poi(req, res, next) {
     }
 }
 
+async function get_poi_coghent(req, res, next) {
+    try {
+        var country = req.params['country'];
+        var result = await locations_coghent.getCoghentPOIs(country);
+        console.log(result)
+        res.end('')
+    } catch(e) {
+        console.log("POI ERROR");
+        next(e);
+    }
+}
+
 module.exports = {
     get,
     get_sparql,
-    get_poi
+    get_poi,
+    get_poi_coghent
 };
