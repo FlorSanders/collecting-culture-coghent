@@ -1,5 +1,6 @@
 const sparql_api = require('../services/sparql-api')
 const gent_sparql = require('../services/gent-sparql')
+const locations = require('../services/locations')
 
 async function get(req, res, next) {
     try {
@@ -22,7 +23,30 @@ async function get_sparql(req, res, next) {
     }
 }
 
+async function get_poi(req, res, next) {
+    try {
+        var country = req.params['country'];
+        var result = await locations.get_locations(country);
+        return_value = {'points': []}
+        result.forEach(element => {
+            let dict = {}
+            dict["name"] = element.name;
+            dict["Xco"] = element.geometry.location.lat;
+            dict["Yco"] = element.geometry.location.lng;
+            dict["icon"] = element.icon;
+            dict["types"] = element.types;
+            return_value["points"].push(dict)
+        });
+        return_value = JSON.stringify(return_value)
+        res.end(return_value)
+    } catch(e) {
+        console.log("POI ERROR");
+        next(e);
+    }
+}
+
 module.exports = {
     get,
-    get_sparql
+    get_sparql,
+    get_poi
 };

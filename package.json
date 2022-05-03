@@ -20,6 +20,8 @@
     "form-data": "^4.0.0",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
-    "sparqljs": "^3.5.1"
+    "sparqljs": "^3.5.1",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.3.0"
   }
 }
