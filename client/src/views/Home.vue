@@ -52,22 +52,7 @@
 
             <!-- Map -->
             <v-col>
-              <iframe
-                width="50%"
-                height="10%"
-                frameborder="0"
-                scrolling="no"
-                marginheight="0"
-                marginwidth="0"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=3.6184501647949223%2C51.0033856925319%2C3.8340568542480473%2C51.09662294502995&amp;layer=mapnik"
-                style="border: 1px solid black"
-              ></iframe>
-              <br />
-              <small>
-                <a href="https://www.openstreetmap.org/#map=13/51.0500/3.7263"
-                  >View Larger Map</a
-                >
-              </small>
+              <div id="mapContainer" style="width:100%;height:500px"></div>
             </v-col>
 
             <!-- Search results -->
@@ -92,13 +77,19 @@
 </template>
 
 <script setup>
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
 import axios from "axios";
 export default {
   name: "SearchBox",
+
   data: () => ({
     searchbox: "",
     results: [],
     searchTerm: null,
+
+    map: null,
   }),
 
   methods: {
@@ -110,7 +101,32 @@ export default {
 
       this.results = response.data.points;
       console.log(this.results);
+
+      this.results.forEach(element => {
+        let icon = L.icon({
+          iconUrl: element.icon,
+          iconSize: [38, 95],
+          iconAnchor: [22, 94],
+          popupAnchor: [-3, -76],
+        });
+
+        let marker = L.marker([element.lat, element.lng], {icon: icon}).addTo(this.map);
+        marker.bindPopup(element.name);
+      });
     },
+
+    setupLeafletMap: function () {
+      const mapDiv = L.map("mapContainer").setView([51.052110, 3.724955], 12);
+      
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(mapDiv);
+
+      this.map = mapDiv;
+    },
+  },
+  mounted() {
+    this.setupLeafletMap();
   },
 };
 </script>

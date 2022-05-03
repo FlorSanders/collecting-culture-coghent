@@ -11,8 +11,8 @@ async function get_poi(req, res, next) {
     result_coghent.forEach((element) => {
       let dict = {};
       dict["name"] = element.label;
-      dict["Xco"] = element.location[1];
-      dict["Yco"] = element.location[0];
+      dict["lat"] = element.location[1];
+      dict["lng"] = element.location[0];
       dict["photo"] = element.image;
       dict["icon"] =
         "https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet.png";
@@ -31,8 +31,8 @@ async function get_poi(req, res, next) {
           API_KEY;
       }
       dict["name"] = element.name;
-      dict["Xco"] = element.geometry.location.lat;
-      dict["Yco"] = element.geometry.location.lng;
+      dict["lat"] = element.geometry.location.lat;
+      dict["lng"] = element.geometry.location.lng;
       dict["icon"] = element.icon;
       dict["types"] = element.types;
       return_value["points"].push(dict);
@@ -48,8 +48,8 @@ async function get_poi(req, res, next) {
           API_KEY;
       }
       dict["name"] = element.name;
-      dict["Xco"] = element.geometry.location.lat;
-      dict["Yco"] = element.geometry.location.lng;
+      dict["lat"] = element.geometry.location.lat;
+      dict["lng"] = element.geometry.location.lng;
       dict["icon"] = element.icon;
       dict["types"] = element.types;
       return_value["points"].push(dict);

@@ -44,11 +44,11 @@ const BDSController = require("../controllers/BDS.controller");
  *                         type: string
  *                         description: URL of the icon of POI.
  *                         example: https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png
- *                       Xco:
+ *                       lat:
  *                         type: float
  *                         description: The X-coördinate of the location.
  *                         example: 51.05533
- *                       Yco:
+ *                       lng:
  *                         type: float
  *                         description: The Y-coördinate of the location.
  *                         example: 3.72020
