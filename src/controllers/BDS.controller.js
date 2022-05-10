@@ -37,7 +37,9 @@ async function get_poi(req, res, next) {
       dict["types"] = element.types;
       return_value["points"].push(dict);
     }
+    /*
     var result_store = await locations.get_locations(country, (type = "store"));
+    console.log(result_store);
     for (const element of result_store) {
       let dict = {};
       if ("photos" in element) {
@@ -54,6 +56,7 @@ async function get_poi(req, res, next) {
       dict["types"] = element.types;
       return_value["points"].push(dict);
     }
+    */
     return_value = JSON.stringify(return_value);
     res.end(return_value);
   } catch (e) {
