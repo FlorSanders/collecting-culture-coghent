@@ -44,7 +44,7 @@
                   label="Search for culture"
                   clearable
                 />
-                <v-btn elevation="2" color="secondary" type="submit"
+                <v-btn elevation="2" color="secondary" type="submit" v-on:keyup.enter="search"
                   >Search</v-btn
                 >
               </form>
@@ -58,7 +58,14 @@
             <!-- Search results -->
             <v-layout v-if="searchTerm" class="my-5" row wrap justify-center>
               <v-card class="elevation-0" color="rgb(0, 0, 0, 0)">
-                <v-card-title>{{ this.searchTerm }}</v-card-title>
+                <v-card-title align="center">Results for "{{ this.searchTerm }}" in Ghent</v-card-title>
+                <div v-if="results.length==0" align="center">
+                  <v-progress-circular
+                  indeterminate
+                  color="primary"
+                ></v-progress-circular>
+                </div>
+                
                 <v-card
                   v-for="result in results"
                   :key="result.name"
@@ -66,6 +73,55 @@
                   class="my-2"
                 >
                   <v-card-title>{{ result.name }}</v-card-title>
+                  
+                  <v-card-subtitle v-if="result.typePOI=='MUSEA'" align="left">Cogent official museum</v-card-subtitle>
+                  <v-card-subtitle v-else align="left">
+                   <v-row class="ml-1 mb-1">
+                      <v-rating
+                        :value="result.rating"
+                        color="amber"
+                        dense
+                        half-increments
+                        readonly
+                        size="14"
+                      ></v-rating>
+                      <div class="grey--text ms-4">
+                        ({{ result.user_ratings_total ? result.user_ratings_total : 0}})
+                      </div>
+                      <v-spacer></v-spacer>
+                      <div class="grey--text ms-4 mr-1">
+                        {{result.vicinity}}
+                      </div>
+                   </v-row>
+                  </v-card-subtitle>
+
+                  <v-img
+                    v-if="result.photo"
+                    height="250"
+                    :src="result.photo"
+                  />
+
+                  <div v-if="result.objects">
+                    <v-expansion-panels focusable>
+                      <v-expansion-panel
+                        v-for="object in result.objects"
+                        :key="object.id">
+                        <v-expansion-panel-header>{{ object.title}}</v-expansion-panel-header>
+                        <v-expansion-panel-content>
+                          <div align="center">
+                            <v-img
+                              v-if="object.image"
+                              width="50%"
+                              :src="object.image"
+                              class="mt-3 mb-3"
+                            />
+                          </div>
+                          <v-text>{{ object.description}}</v-text>
+                          </v-expansion-panel-content>
+                      </v-expansion-panel>
+                    </v-expansion-panels>
+                  </div>
+                  
                 </v-card>
               </v-card>
             </v-layout>
@@ -88,24 +144,25 @@ export default {
     searchbox: "",
     results: [],
     searchTerm: null,
+    cogentlogo: "https://images.squarespace-cdn.com/content/v1/5fb4f5b0509a072b93557287/1605696771742-W0ITSYRAQ1RSW9V4INY7/Logo_CollectievandeGentenaar.png?format=1500w",
 
     map: null,
   }),
 
   methods: {
     async search() {
+      this.results = []
       this.searchTerm = this.searchbox;
       let response = await axios.get(
         `http://localhost:3001/bds/poi/${this.searchbox}`
       );
 
       this.results = response.data.points;
-      console.log(this.results);
 
       this.results.forEach(element => {
         let icon = L.icon({
           iconUrl: element.icon,
-          iconSize: [38, 95],
+          iconSize: [40, 40],
           iconAnchor: [22, 94],
           popupAnchor: [-3, -76],
         });

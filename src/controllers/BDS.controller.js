@@ -35,6 +35,9 @@ async function get_poi(req, res, next) {
       dict["lng"] = element.geometry.location.lng;
       dict["icon"] = element.icon;
       dict["types"] = element.types;
+      dict["rating"] = element.rating;
+      dict["user_ratings_total"] = element.user_ratings_total; 
+      dict["vicinity"] = element.vicinity;
       return_value["points"].push(dict);
     }
     /*
