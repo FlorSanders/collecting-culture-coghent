@@ -116,7 +116,7 @@
                               class="mt-3 mb-3"
                             />
                           </div>
-                          <v-text>{{ object.description}}</v-text>
+                          <div>{{ object.description}}</div>
                           </v-expansion-panel-content>
                       </v-expansion-panel>
                     </v-expansion-panels>
@@ -147,6 +147,7 @@ export default {
     cogentlogo: "https://images.squarespace-cdn.com/content/v1/5fb4f5b0509a072b93557287/1605696771742-W0ITSYRAQ1RSW9V4INY7/Logo_CollectievandeGentenaar.png?format=1500w",
 
     map: null,
+    layerGroup: null,
   }),
 
   methods: {
@@ -159,6 +160,11 @@ export default {
 
       this.results = response.data.points;
 
+      if (this.layerGroup != null) {
+        this.layerGroup.clearLayers();
+      }
+      this.layerGroup = L.layerGroup().addTo(this.map);
+
       this.results.forEach(element => {
         let icon = L.icon({
           iconUrl: element.icon,
@@ -167,7 +173,7 @@ export default {
           popupAnchor: [-3, -76],
         });
 
-        let marker = L.marker([element.lat, element.lng], {icon: icon}).addTo(this.map);
+        let marker = L.marker([element.lat, element.lng], {icon: icon}).addTo(this.layerGroup);
         marker.bindPopup(element.name);
       });
     },
