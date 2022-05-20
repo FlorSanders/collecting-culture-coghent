@@ -16,6 +16,8 @@ https://TODO/
 
 ## How to use
 ```bash
+# install npm dependencies
+> npm install
 # start frontend and backend server
 > npm run dev
 ```
