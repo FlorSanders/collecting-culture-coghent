@@ -39,7 +39,15 @@ Frontend features include:
 ### Backend
 Collecting culture backend can be found in the `src` folder of the repository. Both the CoGent linked open data dataset as well as the Google Places API are used to collect data and culture.
 
+The API has a single route defined in [bds.route.js](./src/routes/bds.route.js) which is handled by the corresponding controller ([bds.controller.js](./src/controllers/BDS.controller.js)). The controller makes use of the following services in order to fulfill its requests:
+
+- [locations](./src/services/locations.js): Makes use of the [Google Places API](https://developers.google.com/maps/documentation/places/web-service/search-nearby) to retrieve points of intrest in the city.
+- [coghent-poi](./src/services/coghent-poi.js): Retrieves information from four musea in Ghent ([Huis Van Alijn](https://huisvanalijn.be), [Stadsmuseum Gent](https://stamgent.be/), [Industriemuseum](https://www.industriemuseum.be/) and [Design Museum Gent](https://www.designmuseumgent.be)) by using the API calls described in the following subservices:
+    - [coghent-graphql-queries](./src/services/coghent-graphql-queries.js): Defines queries to the GrapqhQL API which also powers the [data.collectie.gent](https://data.collectie.gent/) website. This service reliably handles queries for basic search terms.
+    - [coghent-sparql-queries](./src/services/coghent-sparql-queries.js): Defines queries to the [stad.gent SPARQL API](https://stad.gent/sparql) as well as the [wikidata.org SPARQL API](https://www.wikidata.org/). The goal of this service is to handle more complex search queries in the coghent dataset. <br>Note: This service was only partially used due to technical issues with the API.
+
 ## Datasets and APIs
 
 - [CoGent linked open data dataset](https://www.collections.gent/) - via data.collectie.gent graphql API
+- [City of Ghent SPARQL API](https://stad.gent/sparql)
 - [Google Places API](https://developers.google.com/maps/documentation/places/web-service/search-nearby)
