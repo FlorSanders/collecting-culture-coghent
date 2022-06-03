@@ -2,7 +2,7 @@
 
 :elevator: elevator pitch:
 > We present to you Collecting Culture: a dynamic guided sightseeing tour, tailored to your cultural interests.
-> The Culture Tour app takes you on a trip through Ghent, visiting some of Ghent's most iconic historical locations,
+> The Culture Tour app takes you on a trip through Ghent, visiting some of Ghent's most iconic historical and commercial locations,
 > each of which is annotated with its relevance to your cultural interests & linked to relevant historical objects that can be found in Ghent's musea.
 
 :bar_chart:	pitch deck:
