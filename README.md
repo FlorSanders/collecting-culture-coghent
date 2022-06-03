@@ -7,7 +7,8 @@
 
 :bar_chart:	pitch deck:
 
-https://TODO/
+See `pitch-deck.pdf` or use the following link:
+https://ugentbe-my.sharepoint.com/:p:/g/personal/luca_sotodegraeve_ugent_be/EYMuQk78b4ZFvVbUUO0LLawBzarOwzd6WP3IwlpuRPxPvw?e=jQP1ra
 
 :film_projector: video demo:
 
