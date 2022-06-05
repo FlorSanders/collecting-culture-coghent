@@ -10,8 +10,7 @@
 
 :bar_chart:	pitch deck:
 
-See [`pitch-deck.pdf`](./resources/pitch-deck.pdf) or use the following link:
-https://ugentbe-my.sharepoint.com/:p:/g/personal/luca_sotodegraeve_ugent_be/EYMuQk78b4ZFvVbUUO0LLawBzarOwzd6WP3IwlpuRPxPvw?e=jQP1ra
+See [`pitch-deck.pdf`](./resources/pitch-deck.pdf) or use [this sharepoint link](https://ugentbe-my.sharepoint.com/:p:/g/personal/luca_sotodegraeve_ugent_be/EYMuQk78b4ZFvVbUUO0LLawBzarOwzd6WP3IwlpuRPxPvw?e=jQP1ra).
 
 :film_projector: video demo:
 
