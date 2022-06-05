@@ -12,7 +12,7 @@ https://ugentbe-my.sharepoint.com/:p:/g/personal/luca_sotodegraeve_ugent_be/EYMu
 
 :film_projector: video demo:
 
-- User demo: https://youtu.be/AHTgOeuQyt4
+- User story demo: https://youtu.be/AHTgOeuQyt4
 - Feature overview: https://youtu.be/VgpwHMYDuvY
 
 ## Project setup
