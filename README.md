@@ -12,8 +12,8 @@ https://ugentbe-my.sharepoint.com/:p:/g/personal/luca_sotodegraeve_ugent_be/EYMu
 
 :film_projector: video demo:
 
-- How to use: https://TODO/
-- Feature overview: https://TODO/
+- User demo: https://youtu.be/AHTgOeuQyt4
+- Feature overview: https://youtu.be/VgpwHMYDuvY
 
 ## Project setup
 ```bash
