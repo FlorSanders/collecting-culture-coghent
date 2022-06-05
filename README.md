@@ -54,3 +54,5 @@ The API has a single route defined in [bds.route.js](./src/routes/bds.route.js) 
 - [CoGent linked open data dataset](https://www.collections.gent/) - via data.collectie.gent graphql API
 - [City of Ghent SPARQL API](https://stad.gent/sparql)
 - [Google Places API](https://developers.google.com/maps/documentation/places/web-service/search-nearby)
+
+FINISHED
