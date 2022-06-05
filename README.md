@@ -5,9 +5,12 @@
 > The Culture Tour app takes you on a trip through Ghent, visiting some of Ghent's most iconic historical and commercial locations,
 > each of which is annotated with its relevance to your cultural interests & linked to relevant historical objects that can be found in Ghent's musea.
 
+:bulb: canvases:
+![value canvases](./resources/canvases.png)
+
 :bar_chart:	pitch deck:
 
-See `pitch-deck.pdf` or use the following link:
+See [`pitch-deck.pdf`](./resources/pitch-deck.pdf) or use the following link:
 https://ugentbe-my.sharepoint.com/:p:/g/personal/luca_sotodegraeve_ugent_be/EYMuQk78b4ZFvVbUUO0LLawBzarOwzd6WP3IwlpuRPxPvw?e=jQP1ra
 
 :film_projector: video demo:
